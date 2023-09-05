@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 # Check if there is a single command-line argument
 if ARGV.length != 1
   puts "Usage: #{$0} <string>"
