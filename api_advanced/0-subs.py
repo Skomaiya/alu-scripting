@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
     python script that returns subreddit subscribers
 """
@@ -22,4 +23,3 @@ def number_of_subscribers(subreddit):
     else:
         print(f"Request failed with status code: {response.status_code}")
         return None
-
