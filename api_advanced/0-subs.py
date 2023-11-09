@@ -1,25 +1,20 @@
 #!/usr/bin/python3
 """
-    python script that returns subreddit subscribers
+function that queries the 'Reddit API' and returns the number of subscribers
 """
-import json
 import requests
 
 
-"""
-    Define HTTP headers for the API requests
-"""
 def number_of_subscribers(subreddit):
-    url = 'https://www.reddit.com/r/' + subreddit + '/about.json'  # Fixed URL
-    response = requests.get(url, headers={'User-agent': 'I am learning Apis'})
+    """
+    number of subscribers
+    """
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {"User-Agent": "MyBot/1.0"}  # avoid Too Many Requests error
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
-        content = response.json()
-        result = {"title": content['data']['title'],
-                  "subscribers": content['data']['subscribers']}
-        return result
-    elif response.status_code == 404:
-        return 0
+        data = response.json()["data"]
+        return data["subscribers"]
     else:
-        print(f"Request failed with status code: {response.status_code}")
-        return None
+        return 0
